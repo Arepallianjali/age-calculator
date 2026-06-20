@@ -1,0 +1,158 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Age Calculator</title>
+
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing:border-box;
+        font-family:Arial, sans-serif;
+    }
+
+    body{
+        background:linear-gradient(135deg,#667eea,#764ba2);
+        min-height:100vh;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        padding:20px;
+    }
+
+    .container{
+        background:white;
+        padding:30px;
+        border-radius:15px;
+        box-shadow:0 10px 25px rgba(0,0,0,0.2);
+        width:100%;
+        max-width:450px;
+        text-align:center;
+    }
+
+    h1{
+        color:#333;
+        margin-bottom:20px;
+    }
+
+    input{
+        width:100%;
+        padding:12px;
+        margin:10px 0;
+        border:1px solid #ccc;
+        border-radius:8px;
+        font-size:16px;
+    }
+
+    button{
+        width:100%;
+        padding:12px;
+        background:#667eea;
+        color:white;
+        border:none;
+        border-radius:8px;
+        cursor:pointer;
+        font-size:16px;
+        margin-top:10px;
+    }
+
+    button:hover{
+        background:#5563d8;
+    }
+
+    #result{
+        margin-top:20px;
+        font-size:18px;
+        font-weight:bold;
+        color:#333;
+    }
+
+    .footer{
+        margin-top:25px;
+        font-size:14px;
+        color:#555;
+    }
+
+    .digital-btn{
+        display:inline-block;
+        margin-top:15px;
+        padding:10px 15px;
+        background:#28a745;
+        color:white;
+        text-decoration:none;
+        border-radius:8px;
+    }
+
+    .digital-btn:hover{
+        background:#218838;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Age Calculator</h1>
+
+    <label>Select Your Date of Birth</label>
+    <input type="date" id="dob">
+
+    <button onclick="calculateAge()">Calculate Age</button>
+
+    <div id="result"></div>
+
+    <a class="digital-btn"
+       href="https://digitalheroesco.com"
+       target="_blank">
+       Built for Digital Heroes
+    </a>
+
+    <div class="footer">
+        <p><strong>AREPALLI ANJALI</strong></p>
+        <p>your-email@example.com</p>
+    </div>
+</div>
+
+<script>
+function calculateAge() {
+
+    const dob = document.getElementById("dob").value;
+
+    if(!dob){
+        document.getElementById("result").innerHTML =
+        "Please select your Date of Birth.";
+        return;
+    }
+
+    const birthDate = new Date(dob);
+    const today = new Date();
+
+    let years = today.getFullYear() - birthDate.getFullYear();
+    let months = today.getMonth() - birthDate.getMonth();
+    let days = today.getDate() - birthDate.getDate();
+
+    if(days < 0){
+        months--;
+        const previousMonth =
+        new Date(today.getFullYear(), today.getMonth(), 0).getDate();
+        days += previousMonth;
+    }
+
+    if(months < 0){
+        years--;
+        months += 12;
+    }
+
+    document.getElementById("result").innerHTML =
+    `You are <br><br>
+    ${years} Years,
+    ${months} Months,
+    ${days} Days old`;
+}
+</script>
+
+</body>
+</html>
+```
